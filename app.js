@@ -2,18 +2,24 @@
 
 const container = document.querySelector(".container");
 const boxes = document.querySelectorAll(".boxBtn");
+const submit = document.querySelector(".submit");
+
+let tempBox;
+let newBox = document.querySelector(".box");
+console.log(newBox);
 
 boxes.forEach(box => {
     box.addEventListener("click", function () {
         const currentBox = this;
         removeBtn(currentBox);
-        createBox(currentBox)
+        contentCreate(currentBox);
+        createBox();
     });
 });
 
 
 const createBox = () => {
-    const newBox = document.createElement('div');
+    newBox = document.createElement('div');
     newBox.classList.add('box');
     const btn = document.createElement('button');
     btn.textContent = "+";
@@ -34,43 +40,47 @@ const removeBtn = (currentBox) => {
 }
 
 const contentCreate = (currentBox) => {
-    document.querySelector(".content").classList.remove("hide");
-    container.classList.add("blur");
+    document.querySelector(".content").classList.toggle("hide");
+    container.classList.toggle("blur");
 }
 
-const d = new Date("March 15, 2024 12:00:00").getTime();
-console.log(d); 
-const now = new Date().getTime();
-console.log(now);
-let rem = d - now;
-console.log(rem);
-console.log(Math.floor(rem % 24));
+submit.addEventListener("click", function () {
+    contentCreate(this);
+    timer()
+})
 
+const timer = () => {
+    let cont = document.createElement("div")
+    console.log(newBox);
+    newBox.appendChild(cont);
+    const taskName = document.getElementById("taskName").value;
+    console.log(taskName);
+    const dealineDate = document.getElementById("dealineDate").value;
+    console.log(dealineDate);
+    const d = new Date(dealineDate).getTime();
 
-// const updateTimer = () => {
-//     // Get the current date and time
-//     const now = new Date().getTime();
+    const updateTimer = () => {
+        const now = new Date().getTime();
 
-//     // Calculate the remaining time by subtracting the current time from the end time
-//     const remainingTime = d - now;
+        const remainingTime = d - now;
 
-//     // Check if the timer has finished
-//     if (remainingTime <= 0) {
-//         console.log("Timer finished!");
-//     } else {
-//         // Calculate remaining days, hours, minutes, and seconds
-//         const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
-//         const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-//         const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-//         const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+        if (remainingTime <= 0) {
+            console.log("Timer finished!");
+            return true
+        } else {
+            const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
 
-//         // Output remaining time
-//         console.log("Remaining time:", days, "days", hours, "hours", minutes, "minutes", seconds, "seconds");
-        
-//         // Call the updateTimer function again after 1 second
-//         setTimeout(updateTimer, 1000);
-//     }
-// }
+            const time = `D: ${days}, H: ${hours}, M: ${minutes}, S: ${seconds}`;
+            console.log(time);
+            cont.textContent = time;
 
-// // Start the timer
-// updateTimer();
+            console.log("Remaining time:", days, "days", hours, "hours", minutes, "minutes", seconds, "seconds");
+
+            setTimeout(updateTimer, 1000);
+        }
+    }
+    updateTimer();
+}
