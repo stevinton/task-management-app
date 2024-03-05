@@ -1,3 +1,7 @@
+body {
+    background: linear-gradient(90deg, #FFD1E3, #392467);
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -17,4 +21,55 @@
 .container button {
     position: relative;
     top: 35%;
+}
+
+.hide {
+    display: none;
+}
+
+.blur {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}
+
+.content {
+    text-align: center;
+    position: absolute;
+    left: 35%;
+    border: 1px solid #5D3587;
+    border-radius: 10px;
+    height: 300px;
+    width: 500px;
+}
+
+.content label,
+input {
+    position: relative;
+    top: 40px;
+}
+
+input {
+    position: relative;
+    left: 20px;
+    border: none;
+    background-color: #e7d5fa;
+    border-radius: 10px;
+    height: 20px;
+}
+
+.submit {
+    position: absolute;
+    top: 220px;
+    text-align: center;
+    right: 200px;
+    width: 100px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: #392467;
+    cursor: pointer;
+    color: white;
 }
