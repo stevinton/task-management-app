@@ -50,7 +50,7 @@ submit.addEventListener("click", function () {
 })
 
 const timer = () => {
-    let cont = document.createElement("div")
+    let cont = document.createElement("div");
     console.log(newBox);
     newBox.appendChild(cont);
     const taskName = document.getElementById("taskName").value;
