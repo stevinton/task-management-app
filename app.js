@@ -77,7 +77,6 @@ const timer = () => {
             const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-<<<<<<< HEAD
             let time;
             if(days !== 0){
                 time = `${days} left`
@@ -88,14 +87,6 @@ const timer = () => {
 
 
             // console.log("Remaining time:", days, "days", hours, "hours", minutes, "minutes", seconds, "seconds");
-=======
-
-            const time = `D: ${days}, H: ${hours}, M: ${minutes}, S: ${seconds}`;
-            console.log(time);
-            cont.textContent = time;
-
-            console.log("Remaining time:", days, "days", hours, "hours", minutes, "minutes", seconds, "seconds");
->>>>>>> e7251f8dfc0ffe9968179b2990720d1d0abfe0bd
 
             setTimeout(updateTimer, 1000);
         }
