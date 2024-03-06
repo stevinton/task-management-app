@@ -29,6 +29,17 @@ body {
 
 .container span{
     position: relative;
+    top: -20px;
+}
+
+.container h2{
+    position: relative;
+    left: -140px;
+    top: 10px;
+}
+
+.container span{
+    position: relative;
     left: -140px;
 }
 

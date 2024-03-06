@@ -51,17 +51,19 @@ const timer = () => {
     let cont = document.createElement("div");//created to store timer 
     let title = document.createElement("h3");// created to store title
     let endDate = document.createElement("span");//created to store end date
+    let endTime = document.createElement("h2"); // created to store end time
     // console.log(cont);
     newBox.appendChild(title);
     newBox.appendChild(endDate);
+    newBox.appendChild(endTime);
     // console.log(newBox);
     newBox.appendChild(cont);
     const taskName = document.getElementById("taskName").value;
     // console.log(taskName);
     title.textContent = taskName;
     const dealineDate = document.getElementById("dealineDate").value;
-    console.log(dealineDate.split(",")[0]);
-    endDate.textContent = dealineDate.split(",")[0];
+    endDate.textContent = date(dealineDate);
+    endTime.textContent = time(dealineDate.slice(-8, -3));
     const d = new Date(dealineDate).getTime();
 
     const updateTimer = () => {
@@ -92,4 +94,18 @@ const timer = () => {
         }
     }
     updateTimer();
+}
+
+const date = (data) =>{
+    return data.split(",")[0];
+}
+
+const time = (data) =>{
+    console.log(data)
+    let t = Number(data.slice(0, 2));
+    if(t < 12 && t !== 0){
+        return data + "AM" ;
+    }else{
+        return t-12 + ":00" + "PM"
+    }
 }
