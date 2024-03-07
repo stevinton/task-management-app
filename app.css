@@ -61,13 +61,6 @@ body {
     box-shadow: 2px 2px 2px 2px #FFD1E3;
 }
 
-.container .emptyBox .boxBtn{
-    border: none;
-    border-radius: 5px;
-    height: 25px;
-    width: 25px;
-}
-
 .hide {
     display: none;
 }

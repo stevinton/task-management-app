@@ -30,7 +30,6 @@ const createBox = () => {
     newBox.classList.add('box', 'emptyBox');
     newBox.style.backgroundColor = color[coloring()];
     const btn = document.createElement('button');
-    btn.classList.add("boxBtn");
     btn.textContent = "+";
     btn.addEventListener('click', function () {
         removeBtn(btn);
@@ -82,7 +81,7 @@ const timer = () => {
     cont.style.color = "#35506E";
     // console.log(taskName);
     title.textContent = taskName;
-    const dealineDate = document.getElementById("dea.container .emptyBoxlineDate").value;
+    const dealineDate = document.getElementById("dealineDate").value;
     endDate.textContent = date(dealineDate);
     endTime.textContent = time(dealineDate.slice(-8, -3));
     const d = new Date(dealineDate).getTime();
