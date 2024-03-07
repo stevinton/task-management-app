@@ -4,7 +4,16 @@ const container = document.querySelector(".container");
 const boxes = document.querySelectorAll(".boxBtn");
 const submit = document.querySelector(".submit");
 
+let result = {};// to store the result
+
+let color = ["#6FB372", "#6FA7B3", "#CB84BD", "#7772A3", "#A3729D"];
+
+const coloring = ()=>{
+    return Math.floor(Math.random()*color.length);
+}
+
 let newBox = document.querySelector(".box");
+newBox.style.backgroundColor = color[coloring()];
 console.log(newBox);
 
 boxes.forEach(box => {
@@ -18,7 +27,8 @@ boxes.forEach(box => {
 
 const createBox = () => {
     newBox = document.createElement('div');
-    newBox.classList.add('box');
+    newBox.classList.add('box', 'emptyBox');
+    newBox.style.backgroundColor = color[coloring()];
     const btn = document.createElement('button');
     btn.textContent = "+";
     btn.addEventListener('click', function () {
@@ -29,7 +39,7 @@ const createBox = () => {
 
     container.appendChild(newBox);
 
-    console.log(container);
+    // console.log(container);
 };
 
 const removeBtn = (currentBox) => {
@@ -49,15 +59,23 @@ submit.addEventListener("click", function () {
 
 const timer = () => {
     let cont = document.createElement("div");//created to store timer 
+    let t1 = document.createElement("text");//ctearted to store e left time
+    let t2 = document.createElement("text");//ctearted to store e left text
+    let br = document.createElement("br");//created to break the line
     let title = document.createElement("h3");// created to store title
     let endDate = document.createElement("span");//created to store end date
     let endTime = document.createElement("h2"); // created to store end time
+
+    endTime.style.color = "#880808";
     // console.log(cont);
     newBox.appendChild(title);
     newBox.appendChild(endDate);
     newBox.appendChild(endTime);
-    // console.log(newBox);
     newBox.appendChild(cont);
+    // console.log(newBox);
+    cont.appendChild(t1);
+    cont.appendChild(br);
+    cont.appendChild(t2);
     const taskName = document.getElementById("taskName").value;
     // console.log(taskName);
     title.textContent = taskName;
@@ -65,6 +83,10 @@ const timer = () => {
     endDate.textContent = date(dealineDate);
     endTime.textContent = time(dealineDate.slice(-8, -3));
     const d = new Date(dealineDate).getTime();
+
+    //store the taskname and deadline time to the result 
+
+    
 
     const updateTimer = () => {
         const now = new Date().getTime();
@@ -79,13 +101,16 @@ const timer = () => {
             const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-            let time;
+            let time, text;
             if(days !== 0){
-                time = `${days} left`
+                time = `${days}`;
+                text = "days left";
             }else{
-                time = `${hours}:${minutes}:${seconds} left`
+                time = `${hours}:${minutes}:${seconds}`;
+                text = "hours left";
             }
-            cont.textContent = time;
+            t1.textContent = time;
+            t2.textContent = text;
 
 
             // console.log("Remaining time:", days, "days", hours, "hours", minutes, "minutes", seconds, "seconds");
@@ -105,6 +130,8 @@ const time = (data) =>{
     let t = Number(data.slice(0, 2));
     if(t < 12 && t !== 0){
         return data + "AM" ;
+    }else if(t === 12){
+        return data + "PM"
     }else{
         return t-12 + ":00" + "PM"
     }

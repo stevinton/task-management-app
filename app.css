@@ -4,18 +4,20 @@ body {
 
 .container {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
 }
 
 .container .box {
-    border: 1px solid black;
     width: 500px;
     height: 200px;
     margin: 10px;
     text-align: center;
     justify-content: center;
     align-items: center;
+    border-radius: 20px;
+    box-shadow: 10px 10px;
 }
 
 .container h3{
@@ -46,6 +48,13 @@ body {
 .container button {
     position: relative;
     top: 35%;
+}
+
+.container .emptyBox div{
+    position: relative;
+    bottom: 120px;
+    left: 150px;
+    font-size: xx-large;
 }
 
 .hide {
