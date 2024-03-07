@@ -24,7 +24,7 @@ body {
     position: relative;
     left: -130px;
     font-weight: bolder;
-    color: #FEC7B4;
+    color: white;
     font-size: xx-large;
     text-transform: uppercase;
 }
@@ -52,9 +52,20 @@ body {
 
 .container .emptyBox div{
     position: relative;
-    bottom: 120px;
-    left: 150px;
+    bottom: 150px;
+    left: 350px;
     font-size: xx-large;
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px 2px #FFD1E3;
+}
+
+.container .emptyBox .boxBtn{
+    border: none;
+    border-radius: 5px;
+    height: 25px;
+    width: 25px;
 }
 
 .hide {

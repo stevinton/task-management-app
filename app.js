@@ -30,6 +30,7 @@ const createBox = () => {
     newBox.classList.add('box', 'emptyBox');
     newBox.style.backgroundColor = color[coloring()];
     const btn = document.createElement('button');
+    btn.classList.add("boxBtn");
     btn.textContent = "+";
     btn.addEventListener('click', function () {
         removeBtn(btn);
@@ -77,16 +78,19 @@ const timer = () => {
     cont.appendChild(br);
     cont.appendChild(t2);
     const taskName = document.getElementById("taskName").value;
+    // styling the left time
+    cont.style.color = "#35506E";
     // console.log(taskName);
     title.textContent = taskName;
-    const dealineDate = document.getElementById("dealineDate").value;
+    const dealineDate = document.getElementById("dea.container .emptyBoxlineDate").value;
     endDate.textContent = date(dealineDate);
     endTime.textContent = time(dealineDate.slice(-8, -3));
     const d = new Date(dealineDate).getTime();
 
     //store the taskname and deadline time to the result 
 
-    
+    result[taskName] = dealineDate;
+    localStorage.setItem("result", JSON.stringify(result));
 
     const updateTimer = () => {
         const now = new Date().getTime();
@@ -95,6 +99,7 @@ const timer = () => {
 
         if (remainingTime <= 0) {
             console.log("Timer finished!");
+            notify();
             return true
         } else {
             const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
@@ -135,4 +140,8 @@ const time = (data) =>{
     }else{
         return t-12 + ":00" + "PM"
     }
+}
+
+const notify = () => {
+    new Notification("times up");
 }
